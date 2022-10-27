@@ -240,6 +240,18 @@ select sum(loss_profit)
 from cat
 where msrp_sales < price;
 
+--grouping customer's by products ordered
+select customer_name, 
+	 count(case when product_line = 'Classic Cars' then 1 end) as classic_cars,
+	count(case when product_line = 'Vintage Cars' then 1 end) as vintage_cars,
+	count(case when product_line = 'Motorcycles' then 1 end) as  motorcycles,
+	count(case when product_line = 'Trains' then 1 end) as trains,
+	count(case when product_line = 'Ships' then 1 end) as ships,
+	count(case when product_line = 'Truck and Buses' then 1 end) as trucks_bus,
+	count(case when product_line = 'Planes' then 1 end) as planes
+
+from sales_data.dbo.sales_data
+group by customer_name
 
 
 
